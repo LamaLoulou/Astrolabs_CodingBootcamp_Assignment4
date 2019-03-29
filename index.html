@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Astrolabs Coding Bootcamp (week 4) - Javascript Assignment </title>
+    </head>    <body>
+        <h1>JavaScript</h1>
+        <script type="text/javascript">
+            var house = {
+                areas: [{
+                    livingRoom: {
+                        items: ['tv','sofa']
+                    },
+                    bedroomOne: {
+                        items: ['bed','washing machine'],
+                        windows: 3
+                    },
+                    bedroomTwo:{
+                        items: ['bed','bed','desk'],
+                        windows: 4
+                    },
+                    kitchen:{
+                        items: ['fridge','broken chair']
+                    }
+                }],
+                garden: [true, 'Red Rose'],
+                garage: {
+                    car: {
+                        color: 'red',
+                        wheels: 4,
+                        honk: ()=>{alert("Beep")}
+                        }
+                    }
+                }
+
+            // Find total number of areas in the house
+            console.log("Total no. of areas in the house:", Object.keys(house.areas[0]).length);
+            console.log("#####################################");
+            // Add a dining table to the living room
+            console.log("Living room items before adding dining table:",house.areas[0].livingRoom.items);
+            house.areas[0].livingRoom.items.push('dining table');
+            console.log("Living room items after adding dining table:",house.areas[0].livingRoom.items);
+            console.log("#####################################");
+
+            // Add a stove to the kitchen
+            console.log("kitchen items before adding stove:",house.areas[0].kitchen.items);
+            house.areas[0].kitchen.items.push("stove");
+            console.log("kitchen items after adding stove:",house.areas[0].kitchen.items);
+            console.log("#####################################");
+            
+            // Remove the washing machine from bedroomOne
+            console.log("bedroomOne items before removing 'washing machine' from it:",house.areas[0].livingRoom.items);
+            house.areas[0].bedroomOne.items.pop();
+            console.log("bedroomOne items after removing 'washing machine' from it:",house.areas[0].livingRoom.items);
+            console.log("#####################################");
+
+            // Find the total number of beds in all rooms
+            let totalNoOfBeds = 0;
+            let getAreaBedsCount = (areaItems) => {
+                let beds = 0;
+                areaItems.map(
+                    (item) => {
+                        if(item === 'bed'){
+                            beds++;
+                        }          
+                    })
+                    return beds;
+                }
+            house.areas.map(
+                (area) => {
+                    totalNoOfBeds += getAreaBedsCount(area.livingRoom.items);
+                    totalNoOfBeds += getAreaBedsCount(area.bedroomOne.items);
+                    totalNoOfBeds += getAreaBedsCount(area.bedroomTwo.items);
+                }
+            );
+            console.log("Total no. of beds in all rooms:",totalNoOfBeds);
+            console.log("#####################################");
+
+            // Change the color of the car to blue
+            console.log("Old car color:",house.garage.car.color);
+            house.garage.car.color = "blue";
+            console.log("New car color:",house.garage.car.color);
+            console.log("#####################################");
+            // Add a another car to the garage with a honk function
+            house.garage.car2 = {
+                honk: () => alert("Beep from car2")
+            }
+            // Make the new car honk
+            house.garage.car2.honk();
+            // Change the 'broken chair' in the kitchen to 'new chair'
+            house.areas[0].kitchen[1] = 'new chair';
+            // If the house has a garden, console.log the name of the flower
+            if(house.garden){
+                console.log("Name of the flower in the garden:", house.garden[1]);
+            }
+        </script>
+    </body>
+
+</html>
+
